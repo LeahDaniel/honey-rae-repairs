@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router";
 
 export const EmployeeList = () => {
     const [employees, changeEmployee] = useState([])
     const [specialtiesList, updateSpecialtiesList] = useState([])
+    const history = useHistory()
 
     useEffect(
         () => {
@@ -15,20 +17,26 @@ export const EmployeeList = () => {
         []
     )
 
-    useEffect(() => {
-        /*
-            1. Use .map() to get the specialty of each employee
-            2. Then update a state variable to be a comma-separated string
-                (e.g. "iPhone, Printers, ...")
-        */
-        const specialtiesStr = employees.map(employee => employee.specialty).join(", ")
+    useEffect(
+        () => {
+            /*
+                1. Use .map() to get the specialty of each employee
+                2. Then update a state variable to be a comma-separated string
+                    (e.g. "iPhone, Printers, ...")
+            */
+            const specialtiesStr = employees.map(employee => employee.specialty).join(", ")
 
-        updateSpecialtiesList(specialtiesStr)
+            updateSpecialtiesList(specialtiesStr)
 
-    }, [employees])
+        },
+        [employees])
 
     return (
         <>
+            <div>
+                <button onClick={() => history.push("/employee/create")}>Hire Employee</button>
+            </div>
+
             <div>
                 Specialties: {specialtiesList}
             </div>
