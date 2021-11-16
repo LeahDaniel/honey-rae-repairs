@@ -57,7 +57,7 @@ export const TicketForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="name">Emergency:</label>
+                    <label htmlFor="emergency">Emergency:</label>
                     <input type="checkbox"
                         onChange={
                             (event) => {
