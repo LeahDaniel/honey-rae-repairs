@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { getAllEmployees } from "../ApiManager";
 
 export const EmployeeList = () => {
     const [employees, changeEmployee] = useState([])
@@ -9,11 +10,8 @@ export const EmployeeList = () => {
 
     useEffect(
         () => {
-            fetch("http://localhost:8088/employees")
-                .then(res => res.json())
-                .then((data) => {
-                    changeEmployee(data)
-                })
+            getAllEmployees()
+                .then(changeEmployee)
         },
         []
     )
@@ -23,7 +21,6 @@ export const EmployeeList = () => {
             /*
                 1. Use .map() to get the specialty of each employee
                 2. Then update a state variable to be a comma-separated string
-                    (e.g. "iPhone, Printers, ...")
             */
             const specialtiesStr = employees.map(employee => employee.specialty).join(", ")
 
